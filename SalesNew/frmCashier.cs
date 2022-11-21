@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
+using SalesNew.Components;
+using static SalesNew.Components.Widget;
 
 namespace SalesNew
 {
@@ -18,6 +20,34 @@ namespace SalesNew
             InitializeComponent();
         }
 
+
+        private void AddItem(string name,string price,categories category) 
+        {
+
+
+            var w = new Widget()
+            {
+                Title = name,
+                Price = price,
+                Categorie = category,
+                //Picture = icon,
+                Tag = category
+
+            };
+
+        string text =    w.Name.ToString();
+
+            flPanelWidget.Controls.Add(w);
+
+     
+
+
+
+
+
+
+
+        }
         private void mouseEnter(object e)
         {
             var button = (IconButton)e;
@@ -86,6 +116,37 @@ namespace SalesNew
             mouseLeave(sender);
         }
 
-      
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            //if (e.KeyCode == Keys.Enter || txtSearch.Text.Trim().Length == 0) 
+            //{
+                foreach (Control c in panelNav.Controls) 
+                {
+                var item = c.Tag;
+
+                //var wdg = (Widget)item;
+                //wdg.Visible = 
+                //wdg.Visible = wdg.lbl.Text.ToLower().Contains(txtSearch.Text.Trim().ToLower());
+            }
+            //}
+        }
+
+        private void frmCashier_Load(object sender, EventArgs e)
+        {
+            AddItem("Roll","250",categories.Food);
+            AddItem("Tea", "500", categories.ColdDrinks);
+            AddItem("Coffee", "750", categories.HotDrinks);
+            AddItem("Roll", "900", categories.Food);
+            AddItem("Roll", "250", categories.Food);
+            AddItem("Roll", "250", categories.Food);
+
+
+
+        }
     }
 }
